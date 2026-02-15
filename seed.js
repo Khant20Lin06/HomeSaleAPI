@@ -5,7 +5,7 @@ import User from './models/User.js';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/homesales')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://khant20lin061_db_user:<db_password>@cluster0.6y3q4ei.mongodb.net/?appName=Cluster0')
     .then(async () => {
         console.log('Connected to MongoDB for seeding');
 

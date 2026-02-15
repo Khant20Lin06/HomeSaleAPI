@@ -18,6 +18,10 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads')); // Serve uploaded files
 
+// 👇 ဒီနေရာမှာထည့်
+app.get("/", (req, res) => res.send("HomeSaleAPI running"));
+app.get("/api", (req, res) => res.json({ ok: true, message: "API base" }));
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
@@ -29,9 +33,7 @@ app.use('/api/sales', saleRoutes);
 // MongoDB Connection
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/homesales', {
-            serverSelectionTimeoutMS: 5000 // Fail after 5 seconds if connection fails
-        });
+        await mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 5000 });
         console.log('Connected to MongoDB');
     } catch (err) {
         console.error('MongoDB connection error:', err);
